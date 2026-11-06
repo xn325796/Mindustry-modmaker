@@ -1,0 +1,1925 @@
+/*
+ * Theme mirrors markdown/Mindustry模组工作台原型.html.
+ *
+ * Colours are JavaFX looked-up colours (supported since 8u41): every palette entry is defined once
+ * on .root below as a -mm-* variable and referenced through the rest of the sheet. Re-colouring
+ * the theme - or trying a light variant - is a .root-only edit; the palette literals live nowhere
+ * else in this file. A handful of one-off shades with a single call site (command-bar states,
+ * dialog surface, preview boxes, the node-card purples, canvas edge strokes) stay literal.
+ *
+ * Variables   backgrounds  -mm-bg-0 (page) · -mm-bg-1 (chrome) · -mm-panel · -mm-panel-idle ·
+ *                          -mm-panel-dark · -mm-strip · -mm-item · -mm-canvas · -mm-input ·
+ *                          -mm-button
+ *             interaction  -mm-hover · -mm-button-hover
+ *             lines        -mm-line · -mm-line-2 · -mm-line-3 · -mm-line-4 · -mm-line-5 ·
+ *                          -mm-line-6 · -mm-line-hover
+ *             text         -mm-text-1 (primary) · -mm-text-2 (secondary) · -mm-text-3 (tertiary) ·
+ *                          -mm-text-4 (placeholder)
+ *             accent       -mm-accent (ink on accent: -mm-strip; faint wash: -mm-accent-faint) ·
+ *                          -mm-ok · -mm-error
+ *             node card    -mm-node-bg · -mm-node-text (the 画板 1.svg purple scheme)
+ * Radii       4 / 5 / 6 / 7 / 8 / 20
+ * Sizes       12 / 13 / 14 / 15 / 16 / 19 / 22 / 24 px
+ *
+ * Type colours live in ContentType.color() (mirroring the prototype's category palette: liquid,
+ * block, unit, weather, status, planet, sector, team, item) so they also reach project.json.
+ */
+
+.root {
+    /* --- palette: the only place colour literals live (looked-up colours, resolved by descendants) */
+
+    /* Backgrounds */
+    -mm-bg-0: #07080A;           /* page */
+    -mm-bg-1: #15171C;           /* header / menu / status chrome */
+    -mm-panel: #121516;          /* active panel, tool bar, table, pager */
+    -mm-panel-idle: #1B1F21;     /* unselected tab strips */
+    -mm-panel-dark: #0B0C0F;     /* side panels, list/tree views */
+    -mm-strip: #171A1C;          /* sub-header strip, selected tabs, ink on accent */
+    -mm-item: #171B1C;           /* item surfaces: chips, cards, blocks, tiles, menus */
+    -mm-canvas: #0E1113;         /* canvas, tech canvas, table rows, badges */
+    -mm-input: #141A1D;          /* input fields */
+    -mm-button: #161B1F;         /* buttons & combos */
+
+    /* Interaction states */
+    -mm-hover: #1E252A;          /* generic row/tab/button hover */
+    -mm-button-hover: #1E242A;   /* tool & dialog button hover */
+
+    /* Lines & borders */
+    -mm-line: #1C2023;           /* hairline dividers */
+    -mm-line-2: #21272C;         /* card/block/tile borders */
+    -mm-line-3: #262C31;         /* input borders */
+    -mm-line-4: #2A3137;         /* outer borders, scrollbar thumb, port fill */
+    -mm-line-5: #1E2429;         /* stat list rows */
+    -mm-line-6: #242A2F;         /* preview box / stage borders */
+    -mm-line-hover: #3A444C;     /* hover borders, thumb hover */
+
+    /* Text */
+    -mm-text-1: #FFFFFF;         /* primary */
+    -mm-text-2: #8B939B;         /* secondary */
+    -mm-text-3: #5E656D;         /* tertiary */
+    -mm-text-4: #4A5158;         /* placeholder, vanilla tech edges */
+
+    /* Accent & status */
+    -mm-accent: #FFA347;
+    -mm-accent-faint: rgba(255, 163, 71, 0.14);
+    -mm-ok: #77CF77;
+    -mm-error: #F27C54;
+
+    /* Node-card purple scheme (画板 1.svg) */
+    -mm-node-bg: #1b1a33;
+    -mm-node-text: #d9d9d9;
+
+    -fx-font-family: "Inter", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+    -fx-font-size: 13px;
+    -fx-base: -mm-item;
+    -fx-background: -mm-panel;
+    -fx-control-inner-background: -mm-input;
+    -fx-accent: -mm-accent;
+    -fx-focus-color: -mm-accent;
+    -fx-faint-focus-color: -mm-accent-faint;
+    -fx-text-background-color: -mm-text-1;
+    -fx-text-fill: -mm-text-1;
+    -fx-outer-border: -mm-line-4;
+    -fx-inner-border: -mm-line;
+    -fx-selection-bar: -mm-panel-idle;
+    -fx-selection-bar-non-focused: -mm-item;
+    -fx-mark-color: -mm-strip;
+    -fx-mark-highlight-color: transparent;
+}
+
+/* --- app chrome ---------------------------------------------------------------------------------- */
+
+.app-root {
+    -fx-background-color: -mm-bg-0;
+}
+
+/* The letterbox behind the design canvas scaled by App.DesignSurface. */
+.design-surface {
+    -fx-background-color: -mm-bg-0;
+}
+
+/* The frameless window's own 40px title strip; 3x40px on the right holds the window buttons. */
+.title-strip {
+    -fx-background-color: -mm-bg-1;
+    -fx-min-height: 40;
+    -fx-pref-height: 40;
+    -fx-max-height: 40;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.window-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 16px;
+    -fx-min-width: 40;
+    -fx-pref-width: 40;
+    -fx-max-width: 40;
+    -fx-min-height: 40;
+    -fx-pref-height: 40;
+    -fx-max-height: 40;
+    -fx-padding: 0;
+}
+
+.window-button:hover {
+    -fx-background-color: -mm-hover;
+    -fx-text-fill: -mm-text-1;
+}
+
+.window-button.close:hover {
+    -fx-background-color: -mm-error;
+    -fx-text-fill: -mm-strip;
+}
+
+/* The menu sits inside the window's title strip (.title-strip), so it is transparent and exactly
+   as tall as that strip; each menu is a 60x40 button with its label centred. */
+.menu-bar {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-min-height: 40;
+    -fx-pref-height: 40;
+    -fx-max-height: 40;
+}
+
+.menu-bar > .container > .menu-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-min-width: 60;
+    -fx-pref-width: 60;
+    -fx-max-width: 60;
+    -fx-min-height: 40;
+    -fx-pref-height: 40;
+    -fx-max-height: 40;
+}
+
+.menu-bar > .container > .menu-button:hover {
+    -fx-background-color: -mm-hover;
+}
+
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: -mm-hover;
+}
+
+/* The button's label node fills the whole button, so the button's own alignment does nothing here:
+   the text lands where the label's alignment puts it. Left as the JavaFX default (CENTER_LEFT) the
+   glyphs hug the cell's left edge, which is what the hover box makes obvious. */
+.menu-bar > .container > .menu-button > .label {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+}
+
+.menu-bar > .container > .menu-button:hover > .label,
+.menu-bar > .container > .menu-button:showing > .label {
+    -fx-text-fill: -mm-text-1;
+}
+
+/* The 64px bar under the tab strip: a workspace's own toolbar - type chips, the canvas tools, or
+   nothing. Its chips are 64px too, so they fill it exactly. */
+.sub-header {
+    -fx-background-color: -mm-strip;
+    -fx-min-height: 64;
+    -fx-pref-height: 64;
+    -fx-max-height: 64;
+    -fx-padding: 0;
+}
+
+.sub-header .tool-bar {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0 12 0 12;
+}
+
+.type-chips {
+    -fx-min-height: 64;
+}
+
+.chip {
+    -fx-background-color: -mm-strip;
+    -fx-background-radius: 0;
+    /* Slimmed (P2-12): the five asset chips used to sit in fixed 96px boxes, most of which was
+       dead space around short labels. Content width plus padding keeps the click target and
+       frees the row; the add/remove buttons never have to compete for the slack any more. */
+    -fx-padding: 0 18 0 18;
+    -fx-min-height: 64;
+    -fx-pref-height: 64;
+    -fx-max-height: 64;
+}
+
+.chip:hover {
+    -fx-background-color: -mm-hover;
+}
+
+.chip.active {
+    -fx-background-color: -mm-panel;
+}
+
+.chip-label {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 24px;
+}
+
+/* The assets workspace's vertical type rail (UI/资源管理-export.html): 120px wide, 64px rows,
+   active row takes the canvas colour, add/remove pinned to the bottom. */
+.type-rail {
+    -fx-background-color: -mm-strip;
+    -fx-min-width: 120;
+    -fx-pref-width: 120;
+    -fx-max-width: 120;
+    -fx-padding: 0;
+    -fx-spacing: 0;
+}
+
+.rail-button {
+    -fx-background-color: -mm-strip;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 24px;
+    -fx-alignment: center;
+    -fx-min-height: 64;
+    -fx-pref-height: 64;
+    -fx-max-height: 64;
+    -fx-cursor: hand;
+}
+
+.rail-button:hover {
+    -fx-background-color: -mm-hover;
+}
+
+.rail-button.active {
+    -fx-background-color: -mm-panel-dark;
+}
+
+.rail-action {
+    -fx-font-size: 20px;
+    -fx-text-fill: -mm-text-2;
+}
+
+.rail-action:hover {
+    -fx-text-fill: -mm-text-1;
+}
+
+.context-menu {
+    -fx-background-color: -mm-item;
+    -fx-background-radius: 6;
+    -fx-border-color: -mm-line-3;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-effect: null;
+    -fx-padding: 4 0 4 0;
+}
+
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-padding: 6 14 6 14;
+}
+
+.menu-item > .label {
+    -fx-text-fill: -mm-text-2;
+}
+
+.menu-item:focused {
+    -fx-background-color: -mm-hover;
+}
+
+.menu-item:focused > .label,
+.menu-item:hover > .label {
+    -fx-text-fill: -mm-text-1;
+}
+
+.tool-bar {
+    -fx-background-color: -mm-panel;
+    -fx-padding: 6 12 6 12;
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+    -fx-border-color: transparent transparent -mm-line transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.tool-bar .separator:vertical {
+    -fx-padding: 2 6 2 6;
+}
+
+.tool-bar .separator:vertical .line {
+    -fx-background-color: -mm-line;
+    -fx-border-color: transparent;
+}
+
+/* --- buttons ------------------------------------------------------------------------------------- */
+
+.tool-button {
+    -fx-background-color: -mm-button;
+    -fx-background-radius: 6;
+    -fx-border-color: -mm-line-4;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 13px;
+    -fx-padding: 5 12 5 12;
+}
+
+.tool-button:hover {
+    -fx-background-color: -mm-button-hover;
+    -fx-border-color: -mm-line-hover;
+}
+
+.tool-button:pressed {
+    -fx-background-color: #252C33;
+}
+
+.tool-button:disabled {
+    -fx-opacity: 0.4;
+}
+
+/* Toggle buttons (the minimap switches) read as pressed while selected. */
+.tool-button:selected {
+    -fx-background-color: -mm-accent;
+    -fx-text-fill: -mm-strip;
+}
+
+.tool-check {
+    -fx-text-fill: -mm-text-2;
+}
+
+/* Global 64px command bar under the title strip: undo/redo, search, validate/build/launch. */
+.command-bar {
+    -fx-background-color: #101217;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-min-height: 64;
+    -fx-pref-height: 64;
+    -fx-max-height: 64;
+    -fx-padding: 0 12 0 12;
+}
+
+.command-bar .tool-button {
+    -fx-background-color: #191B24;
+    -fx-background-radius: 4;
+    -fx-padding: 4 14 4 14;
+    -fx-text-fill: #CFD3D6;
+    -fx-font-size: 20px;
+    -fx-min-height: 40;
+    -fx-pref-height: 40;
+    -fx-cursor: hand;
+}
+
+.command-bar .tool-button:hover {
+    -fx-background-color: #1F2529;
+}
+
+.command-bar .tool-button:pressed {
+    -fx-background-color: #262D31;
+}
+
+.command-bar .tool-button:disabled {
+    -fx-opacity: 0.4;
+}
+
+/* The experimental adaptive switch stays visible (user rule) and amber in the command bar. */
+.command-bar .tool-check {
+    -fx-text-fill: #FFB347;
+}
+
+/* Cosmos preview tab buttons: full-height chips matching the assets type chips (P3). */
+.preview-tab {
+    -fx-background-color: -mm-strip;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-min-width: 0;
+    -fx-min-height: 64;
+    -fx-pref-height: 64;
+    -fx-max-height: 64;
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 24px;
+    -fx-cursor: hand;
+    -fx-focus-color: transparent;
+}
+
+/* Cosmos bar: the preview tab strip binds to the preview panel width, so no extra padding here. */
+.sub-header.cosmos-bar {
+    -fx-padding: 0;
+}
+
+.preview-tab:hover {
+    -fx-background-color: -mm-hover;
+}
+
+.preview-tab:selected {
+    -fx-background-color: -mm-panel;
+}
+
+/* The right-hand context panel: 属性/预览/校验/文本 in one tabbed surface. Its tab strip shares the
+   workspace tab strip's 64px height and -mm-panel-idle palette; the body is darker than the center,
+   so the region reads as a distinct zone through contrast rather than a divider line. */
+.context-panel {
+    -fx-background-color: -mm-panel-dark;
+}
+
+.context-tabs {
+    -fx-background-color: -mm-panel-idle;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-tab-min-height: 64;
+    -fx-tab-max-height: 64;
+}
+
+.context-tabs > .tab-header-area,
+.context-tabs > .tab-header-area > .tab-header-background {
+    -fx-background-color: -mm-panel-idle;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+
+.context-tabs > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: -mm-strip;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-min-width: 120;
+    -fx-pref-width: 120;
+    -fx-max-width: 120;
+    -fx-min-height: 64;
+    -fx-pref-height: 64;
+    -fx-max-height: 64;
+}
+
+.context-tabs > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #101417;
+}
+
+.context-tabs > .tab-header-area > .headers-region > .tab:hover {
+    -fx-background-color: -mm-hover;
+}
+
+.context-tabs > .tab-header-area > .headers-region > .tab .tab-label {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 24px;
+}
+
+/* No divider between the tab strip and its content, and none around the content itself: the darker
+   body colour marks the region. */
+.context-tabs > .tab-content-area {
+    -fx-background-color: -mm-panel-dark;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+/* The selection head below the context tabs: the record the panel is about, visible from every
+   tab. It shares the inspector header colour so head and tab strip read as one chrome band. */
+.context-head {
+    -fx-background-color: #101417;
+    -fx-padding: 8 8 8 8;
+    -fx-spacing: 0;
+    -fx-min-height: 128;
+    -fx-pref-height: 128;
+    -fx-max-height: 128;
+}
+
+.context-head-row {
+    -fx-min-height: 56;
+    -fx-pref-height: 56;
+    -fx-max-height: 56;
+    -fx-background-color: #0D0D0D;
+    -fx-background-radius: 8;
+    -fx-padding: 0 16 0 16;
+    -fx-spacing: 12;
+}
+
+.context-head-id {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 28px;
+}
+
+.context-head-name {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 28px;
+}
+
+.context-head-findings {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 16px;
+}
+
+.context-head-findings.context-head-warn {
+    -fx-text-fill: -mm-accent;
+}
+
+.context-head-findings.context-head-error {
+    -fx-text-fill: -mm-error;
+}
+
+.record-preview {
+    -fx-background-color: -mm-panel;
+}
+
+.check-box > .box {
+    -fx-background-color: -mm-input;
+    -fx-background-radius: 4;
+    -fx-border-color: -mm-line-3;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+}
+
+.check-box:focused > .box {
+    -fx-border-color: -mm-accent;
+}
+
+.check-box:selected > .box {
+    -fx-background-color: -mm-accent;
+    -fx-border-color: -mm-accent;
+}
+
+.check-box .label {
+    -fx-text-fill: -mm-text-2;
+}
+
+.check-box:selected .label {
+    -fx-text-fill: -mm-text-1;
+}
+
+/* --- inputs ------------------------------------------------------------------------------------- */
+
+.text-field,
+.text-area {
+    -fx-background-color: -mm-input;
+    -fx-background-radius: 5;
+    -fx-border-color: -mm-line-3;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-text-fill: -mm-text-1;
+    -fx-prompt-text-fill: -mm-text-4;
+}
+
+.text-field:focused,
+.text-area:focused {
+    -fx-background-color: -mm-input;
+    -fx-border-color: -mm-accent;
+}
+
+.combo-box,
+.combo-box-base {
+    -fx-background-color: -mm-button;
+    -fx-background-radius: 6;
+    -fx-border-color: -mm-line-4;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+}
+
+.combo-box:focused,
+.combo-box-base:focused {
+    -fx-border-color: -mm-accent;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -mm-text-1;
+}
+
+.combo-box > .arrow-button > .arrow {
+    -fx-background-color: -mm-text-2;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -mm-item;
+    -fx-border-color: -mm-line-3;
+    -fx-effect: null;
+    -fx-background-radius: 6;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-text-fill: -mm-text-2;
+}
+
+.combo-box-popup .list-cell:filled:hover {
+    -fx-background-color: -mm-hover;
+    -fx-text-fill: -mm-text-1;
+}
+
+.combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: -mm-panel-idle;
+    -fx-text-fill: -mm-text-1;
+}
+
+.tooltip {
+    -fx-background-color: -mm-hover;
+    -fx-background-radius: 5;
+    -fx-border-color: -mm-line-3;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-effect: null;
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 12px;
+    -fx-padding: 5 9 5 9;
+}
+
+/* --- scrollbars / scroll panes ------------------------------------------------------------------- */
+
+.panel-scroll,
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.panel-scroll > .viewport,
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar:vertical {
+    -fx-pref-width: 10;
+}
+
+.scroll-bar:horizontal {
+    -fx-pref-height: 10;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: -mm-line-4;
+    -fx-background-insets: 1;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: -mm-line-hover;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-padding: 3;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-background-color: -mm-text-3;
+}
+
+/* --- side panels & palette ------------------------------------------------------------------------ */
+
+.panel {
+    -fx-background-color: -mm-panel-dark;
+    -fx-padding: 10 8 10 8;
+}
+
+/* The planet preview is a tab strip + canvas card: no inner padding, so the bar's tab strip and the
+   canvas share exactly the same width and sit flush against each other. */
+.panel.planet-preview {
+    -fx-padding: 0;
+}
+
+.palette-row {
+    -fx-background-color: -mm-item;
+    -fx-background-radius: 0;
+    -fx-padding: 0 10 0 0;
+    -fx-min-height: 48;
+    -fx-pref-height: 48;
+    -fx-max-height: 48;
+}
+
+.palette-row:hover {
+    -fx-background-color: -mm-hover;
+}
+
+/* Category colour bar: 16px wide, full row height (the prototype's .cat .bar). */
+.palette-bar {
+    -fx-min-width: 16;
+    -fx-pref-width: 16;
+    -fx-max-width: 16;
+    -fx-min-height: 48;
+    -fx-pref-height: 48;
+    -fx-max-height: 48;
+    -fx-background-radius: 0;
+}
+
+.palette-label {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 24px;
+    -fx-padding: 0 0 0 16;
+}
+
+.palette-meta {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 15px;
+}
+
+/* --- canvas --------------------------------------------------------------------------------------- */
+
+.canvas-area {
+    -fx-background-color: -mm-canvas;
+    -fx-border-color: -mm-line;
+    -fx-border-width: 0 1 0 1;
+}
+
+.card {
+    -fx-background-color: -mm-item;
+    -fx-background-radius: 8;
+    -fx-border-color: -mm-line-2;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+}
+
+.card.selected {
+    -fx-border-color: -mm-accent;
+    -fx-border-width: 2;
+}
+
+/* Level of detail while zoomed out: with shadows gone, de-emphasise the border instead. */
+.card.lod-medium {
+    -fx-border-color: -mm-line-4;
+}
+
+.card.lod-far {
+    -fx-border-color: -mm-line;
+}
+
+.type-strip {
+    -fx-background-radius: 6 0 0 6;
+}
+
+.card-title {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.card-sub {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 11.5px;
+}
+
+.card-field {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 12px;
+}
+
+.card-fields {
+    -fx-padding: 2 0 0 0;
+}
+
+.card-more {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 10.5px;
+}
+
+.card-badge {
+    -fx-background-color: -mm-canvas;
+    -fx-background-radius: 4;
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+    -fx-padding: 1 6 1 6;
+}
+
+/* Port captions are Text nodes (they live outside the managed layout), so they take -fx-fill. */
+.port {
+    -fx-fill: -mm-line-4;
+    -fx-stroke: -mm-canvas;
+    -fx-stroke-width: 2;
+}
+
+.port-in {
+    -fx-fill: -mm-text-2;
+}
+
+.port-in:hover {
+    -fx-fill: -mm-text-1;
+}
+
+.port-out {
+    -fx-fill: -mm-ok;
+}
+
+.port-out:hover {
+    -fx-fill: #A7E0A7;
+}
+
+/* The port a pending connection drag snaps onto: an accent ring, fill untouched. */
+.port-snap {
+    -fx-stroke: -mm-accent;
+    -fx-stroke-width: 3;
+}
+
+.port-label {
+    -fx-fill: -mm-text-2;
+    -fx-font-size: 10px;
+}
+
+.port-more {
+    -fx-fill: -mm-text-2;
+    -fx-font-size: 9.5px;
+    -fx-font-weight: bold;
+}
+
+.edge {
+    -fx-stroke: #414A53;
+    -fx-stroke-width: 2;
+    -fx-fill: transparent;
+}
+
+.edge-pick {
+    -fx-stroke: rgba(0, 0, 0, 0.001);
+    -fx-stroke-width: 12;
+    -fx-fill: transparent;
+}
+
+.edge-selected {
+    -fx-stroke: -mm-error;
+    -fx-stroke-width: 2.5;
+}
+
+.edge-arrow {
+    -fx-fill: #6D7885;
+}
+
+.edge-arrow-selected {
+    -fx-fill: -mm-error;
+}
+
+.edge-pending {
+    -fx-stroke: -mm-accent;
+    -fx-stroke-width: 2;
+    -fx-stroke-dash-array: 6 4;
+    -fx-fill: transparent;
+}
+
+/* Reroute waypoint (report P2-9): the dot dragged onto a wire to bend it around other cards. */
+.reroute {
+    -fx-fill: -mm-text-3;
+    -fx-stroke: -mm-line-4;
+    -fx-stroke-width: 1;
+}
+
+.reroute-selected {
+    -fx-fill: -mm-accent;
+    -fx-stroke: -mm-strip;
+}
+
+.edge-label {
+    -fx-background-color: rgba(23, 27, 28, 0.92);
+    -fx-background-radius: 4;
+    -fx-border-color: -mm-line-3;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 10px;
+    -fx-padding: 1 5 1 5;
+}
+
+.rubber-band {
+    -fx-fill: -mm-accent-faint;
+    -fx-stroke: -mm-accent;
+    -fx-stroke-width: 1;
+}
+
+/* --- inspector ------------------------------------------------------------------------------------ */
+
+.section-title {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 6 0 2 0;
+}
+
+.field-label {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 12px;
+}
+
+.field-row {
+    -fx-background-color: -mm-input;
+    -fx-background-radius: 5;
+    -fx-border-color: -mm-line-3;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-padding: 5 9 5 9;
+}
+
+.field-key {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 12px;
+}
+
+.editor-invalid {
+    -fx-text-fill: -mm-error;
+    -fx-prompt-text-fill: -mm-error;
+}
+
+.muted {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 12px;
+}
+
+.raw-area {
+    -fx-font-family: "Cascadia Mono", "Consolas", monospace;
+    -fx-font-size: 12px;
+}
+
+.log-area {
+    -fx-font-family: "Cascadia Mono", "Consolas", monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: #A7B0A8;
+}
+
+.issue-error {
+    -fx-text-fill: -mm-error;
+}
+
+.issue-warning {
+    -fx-text-fill: -mm-accent;
+}
+
+/* --- detail panel blocks (prototype #right-body) ---------------------------------------------------- */
+
+.detail-head {
+    -fx-background-color: -mm-strip;
+    -fx-padding: 0 20 0 20;
+    -fx-min-height: 96;
+    -fx-pref-height: 96;
+    -fx-max-height: 96;
+    -fx-border-width: 0;
+}
+
+.detail-title {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 22px;
+}
+
+.detail-sub {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 13px;
+}
+
+.preview-thumb {
+    -fx-background-radius: 7;
+    -fx-min-width: 88;
+    -fx-pref-width: 88;
+    -fx-max-width: 88;
+    -fx-min-height: 88;
+    -fx-pref-height: 88;
+    -fx-max-height: 88;
+}
+
+.preview-line {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 12px;
+}
+
+.block {
+    -fx-background-color: -mm-item;
+    -fx-background-radius: 8;
+    -fx-border-color: -mm-line-2;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-padding: 18;
+}
+
+.block-title {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.preview-box {
+    -fx-background-color: #0E1215;
+    -fx-background-radius: 7;
+    -fx-border-color: -mm-line-6;
+    -fx-border-width: 1;
+    -fx-border-radius: 7;
+    -fx-padding: 14;
+}
+
+.stat-list {
+    -fx-border-color: -mm-line-5 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.stat-row {
+    -fx-border-color: transparent transparent -mm-line-5 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 8 0 8 0;
+}
+
+.stat-key {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 14px;
+}
+
+.stat-value {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 14px;
+}
+
+.report {
+    -fx-font-size: 13px;
+}
+
+.report-item {
+    -fx-background-color: -mm-input;
+    -fx-background-radius: 4;
+    -fx-border-color: transparent transparent transparent -mm-error;
+    -fx-border-width: 0 0 0 3;
+    -fx-padding: 9 11 9 11;
+}
+
+.report-item.warn {
+    -fx-border-color: transparent transparent transparent -mm-accent;
+}
+
+.report-title {
+    -fx-text-fill: #FFB39C;
+    -fx-font-size: 13px;
+}
+
+.report-item.warn .report-title {
+    -fx-text-fill: -mm-accent;
+}
+
+.report-detail {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 12px;
+}
+
+/* --- resource grid (UI/资源管理-export.html): 128x128 cards, 64px icon block, page dots ---------- */
+
+.asset-grid {
+    -fx-background-color: transparent;
+}
+
+.tile {
+    -fx-background-color: -mm-panel-idle;
+    -fx-background-radius: 4;
+    -fx-border-color: -mm-line-2;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-padding: 8;
+    -fx-spacing: 2;
+}
+
+.tile:hover {
+    -fx-border-color: -mm-line-hover;
+}
+
+.tile.selected {
+    -fx-border-color: -mm-accent;
+    -fx-background-color: #1B2023;
+}
+
+/* The type-coloured icon block, centred at the top of the card. */
+.tile-icon {
+    -fx-min-width: 64;
+    -fx-pref-width: 64;
+    -fx-max-width: 64;
+    -fx-min-height: 64;
+    -fx-pref-height: 64;
+    -fx-max-height: 64;
+    -fx-background-radius: 4;
+}
+
+.tile-name {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 18px;
+}
+
+.tile-id {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 13px;
+}
+
+.pager {
+    -fx-background-color: -mm-panel;
+    -fx-min-height: 48;
+    -fx-pref-height: 48;
+    -fx-max-height: 48;
+}
+
+.pager-dot {
+    -fx-background-color: #C8CEDA;
+    -fx-background-radius: 50;
+    -fx-min-width: 12;
+    -fx-pref-width: 12;
+    -fx-max-width: 12;
+    -fx-min-height: 12;
+    -fx-pref-height: 12;
+    -fx-max-height: 12;
+}
+
+.pager-dot:hover {
+    -fx-background-color: -mm-text-1;
+}
+
+.pager-dot.active {
+    -fx-background-color: -mm-accent;
+}
+
+.preview-pane {
+    -fx-background-color: -mm-panel-dark;
+}
+
+.preview-title {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 22px;
+}
+
+.preview-stage {
+    -fx-background-color: #0E1015;
+    -fx-background-radius: 7;
+    -fx-border-color: -mm-line-6;
+    -fx-border-width: 1;
+    -fx-border-radius: 7;
+}
+
+.preview-fill {
+    -fx-background-radius: 7;
+}
+
+.preview-name {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 19px;
+}
+
+
+.preview-id {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 13px;
+}
+
+.tile-bad {
+    -fx-background-color: -mm-error;
+    -fx-background-radius: 50;
+    -fx-min-width: 8;
+    -fx-pref-width: 8;
+    -fx-max-width: 8;
+    -fx-min-height: 8;
+    -fx-pref-height: 8;
+    -fx-max-height: 8;
+}
+
+.empty-hint {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 16px;
+}
+
+/* --- sprite grid (report P2-11, the Aseprite paradigm) ---------------------------------------------- */
+
+.sprite-grid {
+    -fx-background-color: transparent;
+}
+
+/* One thumbnail cell: a 48px preview over its atlas region name. */
+.sprite-cell {
+    -fx-background-color: -mm-item;
+    -fx-background-radius: 6;
+    -fx-border-color: -mm-line-2;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-padding: 4;
+}
+
+.sprite-cell:hover {
+    -fx-border-color: -mm-line-hover;
+}
+
+/* Selected cells wear the accent outline, like the canvas cards and the asset tiles. */
+.sprite-cell.selected {
+    -fx-border-color: -mm-accent;
+    -fx-background-color: -mm-accent-faint;
+}
+
+/* Placeholder for a sprite the mod references but the atlas lacks: a dashed empty frame. */
+.sprite-cell.missing {
+    -fx-background-color: transparent;
+    -fx-border-color: -mm-text-4;
+    -fx-border-style: segments(4, 4);
+}
+
+.sprite-cell-name {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 11px;
+}
+
+.sprite-cell.missing .sprite-cell-name {
+    -fx-text-fill: -mm-text-4;
+}
+
+/* The multi-select strip under the grid: count + the one batch action (copy regions). */
+.sprite-selection-bar {
+    -fx-background-color: -mm-strip;
+    -fx-background-radius: 4;
+    -fx-padding: 6 8 6 8;
+}
+
+/* --- preview palette strip (report P2-11, the Lospec paradigm) ------------------------------------ */
+
+.sprite-palette {
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* One swatch: the fill is the sprite's own colour (inline style), the frame is theme ink. */
+.palette-swatch {
+    -fx-min-width: 24;
+    -fx-pref-width: 24;
+    -fx-max-width: 24;
+    -fx-min-height: 24;
+    -fx-pref-height: 24;
+    -fx-max-height: 24;
+    -fx-background-radius: 3;
+    -fx-border-color: -mm-line-2;
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+}
+
+.palette-swatch:hover {
+    -fx-border-color: -mm-accent;
+}
+
+/* --- tabs (workspace / bottom / planet preview) ------------------------------------------------------ */
+
+.center-tabs > .tab-header-area > .tab-header-background,
+.bottom-tabs > .tab-header-area > .tab-header-background,
+.preview-tabs > .tab-header-area > .tab-header-background {
+    -fx-background-color: -mm-panel-idle;
+}
+
+.center-tabs > .tab-header-area,
+.bottom-tabs > .tab-header-area,
+.preview-tabs > .tab-header-area {
+    -fx-padding: 0;
+}
+
+/*
+ * The workspace tab strip, scoped to that strip's own headers. As a descendant selector this also
+ * matched the tabs of tab panes nested inside a workspace (the planet preview's .preview-tabs) and
+ * forced the 96x48 cell onto them, which only looked harmless because .preview-tabs re-set the
+ * colours and padding further down the sheet.
+ */
+.center-tabs > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: -mm-panel-idle;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    /* The tab skin lays the label out at the padding's left edge, so the padding is how the label
+       is centred: at 24px a four-character name is about 96px, leaving 12px on each side of the
+       120px cell. */
+    -fx-padding: 0 12 0 12;
+    -fx-min-width: 120;
+    -fx-pref-width: 120;
+    -fx-max-width: 120;
+    -fx-min-height: 64;
+    -fx-pref-height: 64;
+    -fx-max-height: 64;
+}
+
+.center-tabs > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: -mm-strip;
+}
+
+.center-tabs > .tab-header-area > .headers-region > .tab:hover {
+    -fx-background-color: -mm-hover;
+}
+
+.center-tabs > .tab-header-area > .headers-region > .tab .tab-label {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 24px;
+}
+
+/* The scripting placeholder tab: visibly not available, but still readable. */
+.center-tabs > .tab-header-area > .headers-region > .tab:disabled {
+    -fx-opacity: 0.45;
+}
+
+/*
+ * JavaFX outlines the focused, selected tab with -fx-focus-color / -fx-faint-focus-color
+ * (modena.css, ".tab-pane:focused > .tab-header-area > .headers-region > .tab:selected
+ * .focus-indicator"). This app sets -fx-focus-color to the orange accent, so that ring reads as an
+ * orange box around the selected tab; the tab's own selected background already marks it. The
+ * selector mirrors modena's shape so it also wins the specificity tie - this sheet loads later.
+ */
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+.bottom-tabs .tab,
+.preview-tabs .tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-padding: 7 16 8 16;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+.bottom-tabs .tab:selected,
+.preview-tabs .tab:selected {
+    -fx-border-color: transparent transparent -mm-accent transparent;
+}
+
+.bottom-tabs .tab .tab-label,
+.preview-tabs .tab .tab-label {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 14px;
+}
+
+.bottom-tabs .tab:selected .tab-label,
+.preview-tabs .tab:selected .tab-label {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-weight: bold;
+}
+
+/* --- tables & lists --------------------------------------------------------------------------------- */
+
+.table-view {
+    -fx-background-color: -mm-panel;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -mm-item;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: -mm-item;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent transparent -mm-line transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -mm-text-3;
+    -fx-font-size: 12px;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: -mm-canvas;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent transparent -mm-line transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: -mm-item;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: -mm-panel-idle;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: -mm-text-2;
+}
+
+.table-view .table-row-cell:selected .table-cell {
+    -fx-text-fill: -mm-text-1;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: -mm-text-3;
+}
+
+.list-view {
+    -fx-background-color: -mm-panel-dark;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+}
+
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-text-fill: -mm-text-2;
+}
+
+.list-view .list-cell:filled:hover {
+    -fx-background-color: -mm-hover;
+    -fx-text-fill: -mm-text-1;
+}
+
+.list-view .list-cell:filled:selected {
+    -fx-background-color: -mm-panel-idle;
+    -fx-text-fill: -mm-text-1;
+}
+
+.tree-view {
+    -fx-background-color: -mm-panel-dark;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+}
+
+.tree-view .tree-cell {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-text-fill: -mm-text-2;
+}
+
+.tree-view .tree-cell:filled:hover {
+    -fx-background-color: -mm-hover;
+    -fx-text-fill: -mm-text-1;
+}
+
+.tree-view .tree-cell:filled:selected {
+    -fx-background-color: -mm-panel-idle;
+    -fx-text-fill: -mm-text-1;
+}
+
+/* The planet row a sector drag hovers in the cosmos tree (report P2-10). */
+.tree-view .tree-cell.cosmos-drop-target {
+    -fx-background-color: -mm-accent-faint;
+    -fx-border-color: -mm-accent;
+    -fx-border-width: 1;
+}
+
+/* A tech-tree node the game would warn about or refuse. */
+.techtree-problem {
+    -fx-text-fill: -mm-error;
+}
+
+/* --- status bar -------------------------------------------------------------------------------------- */
+
+.status-bar {
+    -fx-background-color: -mm-bg-1;
+    -fx-border-color: -mm-line transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 5 12 5 12;
+}
+
+.status-text {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 12px;
+}
+
+/* Import feedback: the accent progress bar and its cancel, shown only while an import runs. */
+.import-progress {
+    -fx-progress-color: -mm-accent;
+}
+
+.status-bar .status-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4;
+    -fx-border-color: -mm-line-4;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 12px;
+    -fx-padding: 2 8 2 8;
+    -fx-cursor: hand;
+}
+
+.status-bar .status-button:hover {
+    -fx-background-color: -mm-hover;
+    -fx-text-fill: -mm-text-1;
+}
+
+/* The collapsible log drawer above the status bar. */
+.log-drawer {
+    -fx-background-color: -mm-panel-dark;
+    -fx-border-color: -mm-line transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 6;
+}
+
+/* --- dialogs (35 Alert call sites get this look without touching the Java) ----------------------------- */
+
+.dialog-pane {
+    -fx-background-color: #151A1E;
+    -fx-background-radius: 10;
+    -fx-border-color: -mm-line-3;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-padding: 18;
+}
+
+.dialog-pane > .header-panel {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 10 0;
+}
+
+.dialog-pane > .header-panel > .label {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 17px;
+}
+
+.dialog-pane > .content.label,
+.dialog-pane .content .label {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 13.5px;
+}
+
+.dialog-pane > .button-bar > .container {
+    -fx-padding: 16 0 0 0;
+    -fx-spacing: 10;
+}
+
+.dialog-pane > .button-bar > .container > .button {
+    -fx-background-color: -mm-button;
+    -fx-background-radius: 6;
+    -fx-border-color: -mm-line-4;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 13px;
+    -fx-padding: 6 16 6 16;
+}
+
+.dialog-pane > .button-bar > .container > .button:hover {
+    -fx-background-color: -mm-button-hover;
+}
+
+.dialog-pane > .button-bar > .container > .button:default {
+    -fx-background-color: -mm-accent;
+    -fx-border-color: -mm-accent;
+    -fx-text-fill: -mm-strip;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane > .button-bar > .container > .button:default:hover {
+    -fx-background-color: #FFB463;
+}
+
+/* Cosmos fills its workspace edge to edge: no .panel inner margin, so the bar and the preview sit
+   flush against the tab strip / context panel (the "顶格" layout requested for this page). */
+.panel.cosmos {
+    -fx-padding: 0;
+}
+
+/* --- tech tree canvas (game research-dialog analog) ---------------------------------------------- */
+
+.tech-canvas {
+    -fx-background-color: -mm-canvas;
+}
+
+.tech-node {
+    -fx-background-color: -mm-item;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-width: 2;
+    -fx-border-color: -mm-accent;
+}
+
+.tech-node.vanilla {
+    -fx-background-color: -mm-panel-dark;
+    -fx-border-color: -mm-line-4;
+}
+
+.tech-node.problem {
+    -fx-border-color: -mm-error;
+}
+
+.tech-node.selected {
+    -fx-border-color: -mm-text-1;
+}
+
+/* The node a re-parent drag would drop onto: the prospective new parent. */
+.tech-node.target {
+    -fx-border-color: -mm-ok;
+}
+
+/* A record node's input port: the handle a re-parent drag grabs. */
+.tech-port {
+    -fx-fill: -mm-accent;
+    -fx-stroke: -mm-canvas;
+    -fx-stroke-width: 1.5;
+}
+
+/* The rubber band while a node is dragged to a new parent. */
+.tech-rubber {
+    -fx-stroke: -mm-accent;
+    -fx-stroke-width: 2;
+    -fx-stroke-dash-array: 6 4;
+}
+
+.tech-node-icon {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 22px;
+}
+
+.tech-node-label {
+    -fx-text-fill: -mm-text-2;
+}
+
+.tech-node-label.selected {
+    -fx-text-fill: -mm-text-1;
+}
+
+.techtree-problem {
+    -fx-text-fill: -mm-error;
+}
+
+.tech-edge {
+    -fx-stroke-width: 3;
+}
+
+.tech-edge-mod .tech-edge {
+    -fx-stroke: -mm-accent;
+}
+
+.tech-edge-vanilla .tech-edge {
+    -fx-stroke: -mm-text-4;
+}
+
+.tech-edge-problem .tech-edge {
+    -fx-stroke: -mm-error;
+}
+
+.tech-picker .list-cell {
+    -fx-text-fill: -mm-text-1;
+}
+
+/* --- planet lanes (report P2-10) ---------------------------------------------------------------- */
+
+/* Lane boxes carry their colour inline (planet count is unbounded - same call as the batch-B card
+   head with ContentType.color()); the class only holds the shape and the dashed stroke. */
+.tech-lane {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+    -fx-border-style: dashed;
+}
+
+/* The lane caption: the planet's display name, top-left inside the box. */
+.tech-lane-label {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 11px;
+}
+
+/* The lane a lane drag would drop into: a solid success frame over the inline wash. */
+.tech-lane-target {
+    -fx-background-color: transparent;
+    -fx-border-color: -mm-ok;
+    -fx-border-width: 2;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+/* The ghost line from the dragged card to the cursor during a lane drag. */
+.tech-lane-rubber {
+    -fx-stroke: -mm-accent;
+    -fx-stroke-width: 2;
+    -fx-stroke-dash-array: 6 4;
+}
+
+/* --- unlock tri-state & research costs (report P1-8) --------------------------------------------- */
+
+/* The state badge rides the node's top-right corner. It never touches the vanilla/mod/problem
+   border colours above: type colouring says "what this node is", the badge says "can it be
+   researched" - the two channels coexist on the same card. */
+.tech-lock-badge {
+    -fx-stroke: -mm-canvas;
+    -fx-stroke-width: 1;
+}
+
+.tech-lock-badge.unlocked {
+    -fx-fill: -mm-ok;
+}
+
+.tech-lock-badge.researchable {
+    -fx-fill: -mm-accent;
+}
+
+.tech-lock-badge.locked {
+    -fx-fill: -mm-line-4;
+}
+
+/* A locked node fades back; the problem border and the selection outline still read through it. */
+.tech-node.locked {
+    -fx-opacity: 0.55;
+}
+
+/* Research-cost chips inside the node's bottom edge: sprite icon + amount, or "item amount". */
+.tech-cost {
+    -fx-spacing: 2;
+}
+
+.tech-cost-chip {
+    -fx-background-color: -mm-strip;
+    -fx-background-radius: 3;
+    -fx-padding: 0 2 0 2;
+}
+
+.tech-cost-text {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 8px;
+}
+
+/* --- minimap (report P1-6) ---------------------------------------------------------------------- */
+
+.minimap {
+    -fx-background-color: -mm-panel-dark;
+    -fx-border-color: -mm-line-4;
+    -fx-border-width: 1;
+}
+
+/* Tech-tree node blocks reuse the canvas' three-state colours. */
+.mm-node-mod {
+    -fx-fill: -mm-accent;
+}
+
+.mm-node-vanilla {
+    -fx-fill: -mm-line-4;
+}
+
+.mm-node-problem {
+    -fx-fill: -mm-error;
+}
+
+.mm-viewport {
+    -fx-fill: -mm-accent-faint;
+    -fx-stroke: -mm-text-1;
+    -fx-stroke-width: 1;
+}
+
+/* --- zoom LOD (report P1-7) --------------------------------------------------------------------- */
+
+/* Tech tree below LOD_ZOOM: the node keeps its colour block and initial, the name text goes;
+   the border thins so a dense forest still reads, while selection stays a thick outline. */
+.tech-world.lod .tech-node-label {
+    visibility: hidden;
+}
+
+.tech-world.lod .tech-node {
+    -fx-border-width: 1;
+}
+
+.tech-world.lod .tech-node.selected {
+    -fx-border-width: 2;
+}
+
+/* Cost chips are detail text at this scale: hidden with the labels (report P1-8 rule). */
+.tech-world.lod .tech-cost {
+    visibility: hidden;
+}
+
+/* Lane captions are detail text too; the coloured boxes stay so the grouping still reads. */
+.tech-world.lod .tech-lane-label {
+    visibility: hidden;
+}
+
+/* Content canvas below LOD_ZOOM: per-card row hiding already happened (ContentCard.setLod);
+   the root class adds the last step - titles go, the type-coloured head and selection edge stay. */
+.canvas-world.lod .node-title,
+.canvas-world.lod .card-title {
+    visibility: hidden;
+}
+
+.canvas-world.lod .card {
+    -fx-border-color: transparent;
+}
+
+.canvas-world.lod .card.selected {
+    -fx-border-color: -mm-accent;
+    -fx-border-width: 2;
+}
+
+/* --- node card field components (prototype .field style) ----------------------------------------- */
+
+.nf-label {
+    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 12px;
+}
+
+.nf-input {
+    -fx-background-color: -mm-input;
+    -fx-border-color: -mm-line-3;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 12px;
+    -fx-padding: 3 6 3 6;
+}
+
+.nf-input:focused {
+    -fx-border-color: -mm-accent;
+}
+
+.nf-check .box {
+    -fx-background-color: -mm-input;
+    -fx-border-color: -mm-line-3;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.nf-check:selected .mark {
+    -fx-background-color: -mm-accent;
+}
+
+.nf-check .mark {
+    -fx-background-color: transparent;
+    -fx-border-color: -mm-line-3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+}
+
+.nf-ref {
+    -fx-text-fill: #C8D2DA;
+    -fx-font-size: 12px;
+}
+
+.nf-slider .track {
+    -fx-background-color: -mm-input;
+    -fx-border-color: -mm-line-3;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-pref-height: 6;
+}
+
+.nf-slider .thumb {
+    -fx-background-color: -mm-accent;
+    -fx-background-radius: 5;
+    -fx-padding: 5 4 5 4;
+}
+
+/* --- node card, 画板 1.svg geometry --------------------------------------------------------------- */
+
+.node-card {
+    -fx-background-color: -mm-node-bg;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: #2d2c53;
+    -fx-border-width: 1;
+}
+
+.node-card.selected {
+    -fx-border-color: -mm-accent;
+    -fx-border-width: 2;
+}
+
+.node-title {
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.node-row-label {
+    -fx-text-fill: -mm-node-bg;
+    -fx-font-size: 12px;
+    -fx-background-color: -mm-text-1;
+}
+
+.node-value {
+    -fx-text-fill: -mm-node-text;
+    -fx-font-size: 11px;
+}
+
+.node-input {
+    -fx-background-color: #25243c;
+    -fx-border-color: #4744ac;
+    -fx-border-radius: 11;
+    -fx-background-radius: 11;
+    -fx-text-fill: -mm-text-1;
+    -fx-font-size: 11px;
+    -fx-padding: 3 8 3 8;
+}
+
+.node-input:focused {
+    -fx-border-color: -mm-accent;
+}
+
+.node-slider .track {
+    -fx-background-color: -mm-node-text;
+    -fx-background-radius: 6;
+    -fx-background-insets: 0;
+    -fx-pref-height: 10;
+}
+
+.node-slider .thumb {
+    -fx-background-color: -mm-text-1;
+    -fx-background-radius: 14;
+    -fx-background-insets: 0;
+    -fx-padding: 7 7 7 7;
+    -fx-effect: null;
+}
+
+.node-switch {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+}

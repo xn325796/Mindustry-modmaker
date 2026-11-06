@@ -1,0 +1,43 @@
+# --- Gradle / 构建产物 -------------------------------------------------------
+# 生成目录一律不入库；本地文件不受影响，只是不再被跟踪。
+/build/
+/.gradle/
+/bin/
+/dist/
+/snapshots/
+/JDK25/
+/mindustry-modmaker-build/
+# 本地完整版 Gradle 发行版（仅用于离线启动，不入库）
+/gradle/gradle-*/
+# Java 编译与打包产物
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+*.war
+*.ear
+*.hprof
+# 构建/导出的归档文件
+*.zip
+*.tar.gz
+*.rar
+
+# --- 日志与崩溃转储 ---------------------------------------------------------
+*.log
+hs_err_pid*
+replay_pid*
+
+# --- IDE / 编辑器 -----------------------------------------------------------
+/.idea/
+*.iml
+/.vscode/
+/.trae/
+/.settings/
+.project
+.classpath
+*.swp
+*.swo
+
+# --- 操作系统杂项 -----------------------------------------------------------
+Thumbs.db
+desktop.ini
+.DS_Store

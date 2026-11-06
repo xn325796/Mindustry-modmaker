@@ -1,0 +1,231 @@
+{
+  "main": {
+    "id": "091993f6ac1490cf",
+    "type": "split",
+    "children": [
+      {
+        "id": "08cdd4a4a6b85eec",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a909875920efcda5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-历程/存档/项目分析-2026-10-05.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "项目分析-2026-10-05"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3bdd80fa39752086",
+    "type": "split",
+    "children": [
+      {
+        "id": "6cee452373c4fa8e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "22c9fdd74b6c5155",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "314571ea46502b65",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "5de8dd06d71fca58",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 272.70001220703125
+  },
+  "right": {
+    "id": "377512b843aee614",
+    "type": "split",
+    "children": [
+      {
+        "id": "82fa24422b9b6670",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2ada4cbf6e96c0ca",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "首页.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "ee7c1196c44c95f9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "receiving_CN_ZH.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "64714d5a7281d456",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "4271fe979f2190b4",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "8a8a4789838525d2",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "03-历程/存档/项目分析-2026-10-05.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 435.9000244140625
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "314571ea46502b65",
+  "lastOpenFiles": [
+    "首页.md",
+    "file:C:/Users/XN325/Desktop/llama-profile-DeepSeek-R1-Distill-Llama-8B-Q4_K_M.md",
+    "modmaker-defect-report-verified.md",
+    "目标UI预览.md",
+    "file:C:/Users/XN325/Desktop/tsov/README.md",
+    "file:C:/Users/XN325/AppData/Local/Temp/BNZ.6ad08f20bbfbb01/nuclear_energy_blocks.md",
+    "04-参考/Mindustry-JSON键值工程指南-2026-10-06.md",
+    "未命名.base",
+    "file:C:/Users/XN325/Desktop/skills/productivity/README.md",
+    "file:C:/Users/XN325/Desktop/skills-1.3.1/skills-1.3.1/CLAUDE.md",
+    "file:C:/Users/XN325/Desktop/Mindustry/modmaker-defect-analysis/modmaker-defect-report-verified.md",
+    "01-交接/receiving_CN_ZH.md",
+    "modmaker-defect-analysis.html",
+    "02-架构/architectureCN_ZH.md",
+    "03-历程/存档/项目分析-2026-10-05.md",
+    "03-历程/存档/项目分析.md",
+    "03-历程/存档/项目笔记.md",
+    "04-参考/README_CN_ZH.md",
+    "99-归档/英文版/receiving.md",
+    "99-归档/英文版/README.md",
+    "99-归档/英文版/architecture.md",
+    "file:C:/Users/XN325/Desktop/Mindustry/mod/modmaker/boards/main.canvas",
+    "receiving_CN_ZH.md",
+    "03-历程/时间线.md",
+    "99-归档/英文版",
+    "99-归档",
+    "04-参考",
+    "03-历程/存档",
+    "03-历程",
+    "02-架构",
+    "01-交接",
+    "README.md",
+    "Mindustry-JSON键值工程指南-2026-10-06.md",
+    "architecture.md",
+    "README_CN_ZH.md",
+    "receiving.md"
+  ]
+}

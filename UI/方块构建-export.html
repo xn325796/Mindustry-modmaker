@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter%3Awght%40100..900&family=Roboto%3Awght%40100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *, ::before, ::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+    </style>
+
+    <style>
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body style="background-color: #FFFFFF">
+    <div
+      data-pencil-name="方块构建"
+      style="background-color: #FFFFFF; box-sizing: border-box; height: 1020px; overflow: hidden; position: relative; width: 1920px"
+    >
+      <div
+        data-pencil-name="左边栏"
+        style="align-items: center; background-color: #0e1113; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; height: 788px; justify-content: center; left: 320px; overflow: hidden; position: absolute; top: 232px; width: 1120px; z-index: 0"
+      ></div>
+      <div
+        data-pencil-name="左边栏"
+        style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; gap: 0px; height: 40px; justify-content: flex-start; left: 0px; overflow: hidden; position: absolute; top: 0px; width: 1800px; z-index: 1"
+      >
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 60px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            项目
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 60px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            编辑
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 60px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            格式
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 60px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            构建
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 60px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            视图
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 60px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            项目
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 60px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            语言
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 60px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            帮助
+          </div>
+        </div>
+      </div>
+      <div
+        data-pencil-name="左边栏"
+        style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; gap: 0px; height: 40px; justify-content: flex-start; left: 1800px; overflow: hidden; position: absolute; top: 0px; width: 120px; z-index: 2"
+      >
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 40px"
+        >
+          <svg
+            viewBox="0 0 32 32"
+            preserveAspectRatio="xMidYMid meet"
+            data-icon-name="minus"
+            data-icon-set="phosphor"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; flex-shrink: 0; height: 32px; overflow: visible; width: 32px"
+          >
+            <path
+              d="M27 17h-22q-.375 0-.687-.312-.313-.313-.313-.688 0-.375 .313-.687 .312-.313 .687-.313h22q.375 0 .688 .313 .312 .312 .312 .687 0 .375-.312 .688-.313 .312-.688 .312z"
+              fill="#ffffff"
+            />
+          </svg>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 40px"
+        >
+          <svg
+            viewBox="0 0 32 32"
+            preserveAspectRatio="xMidYMid meet"
+            data-icon-name="square"
+            data-icon-set="phosphor"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; flex-shrink: 0; height: 32px; overflow: visible; width: 32px"
+          >
+            <path
+              d="M26 28h-20q-.875 0-1.437-.562-.563-.563-.563-1.438v-20q0-.875 .563-1.437 .562-.563 1.437-.563h20q.875 0 1.438 .563 .562 .562 .562 1.437v20q0 .875-.562 1.438-.563 .562-1.438 .562zM6 6v20h20v-20z"
+              fill="#ffffff"
+            />
+          </svg>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #15171cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 40px"
+        >
+          <svg
+            viewBox="0 0 32 32"
+            preserveAspectRatio="xMidYMid meet"
+            data-icon-name="x"
+            data-icon-set="phosphor"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; flex-shrink: 0; height: 32px; overflow: visible; width: 32px"
+          >
+            <path
+              d="M25.75 24.25q.25 .375 .25 .75 0 .375-.312 .688-.313 .312-.688 .312-.375 0-.75-.25l-8.25-8.375-8.25 8.375q-.375 .25-.75 .25-.375 0-.687-.312-.313-.313-.313-.688 0-.375 .25-.75l8.375-8.25-8.375-8.25q-.25-.375-.187-.75 .062-.375 .312-.625 .25-.25 .625-.312 .375-.063 .75 .187l8.25 8.375 8.25-8.375q.375-.25 .75-.187 .375 .062 .625 .312 .25 .25 .313 .625 .062 .375-.188 .75l-8.375 8.25z"
+              fill="#ffffff"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        data-pencil-name="左边栏"
+        style="align-items: center; background-color: #101217ff; box-sizing: border-box; display: flex; flex-direction: row; gap: 10px; height: 64px; justify-content: flex-start; left: 0px; overflow: hidden; padding: 0px 5px; position: absolute; top: 40px; width: 1920px; z-index: 3"
+      >
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #191b24ff; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 50px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            撤销
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #191b24ff; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 50px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            重做
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #101217ff; border-radius: 15px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 50px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            搜索:
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #191b24ff; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 230px"
+        >
+          <div
+            style="box-sizing: border-box; color: #999999ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 160px"
+          >
+            查找内容
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #191b24ff; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 50px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            校验
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #191b24ff; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 170px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            构建到文件夹内
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #191b24ff; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 170px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            打开测试目录
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #191b24ff; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 170px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            安装并启动游戏
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #191b24ff; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 110px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            停止游戏
+          </div>
+        </div>
+      </div>
+      <div
+        data-pencil-name="左边栏"
+        style="align-items: center; background-color: #1b1f21ff; box-sizing: border-box; display: flex; flex-direction: row; gap: 0px; height: 64px; justify-content: flex-start; left: 0px; overflow: hidden; position: absolute; top: 104px; width: 1440px; z-index: 4"
+      >
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #1b1f21ff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 100%; justify-content: center; padding: 0.8px 12.8px; width: 120px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            资源管理
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #171a1c; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 100%; justify-content: center; padding: 0.8px 12.8px; width: 120px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            方块构建
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #1b1f21ff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 100%; justify-content: center; padding: 0.8px 12.8px; width: 120px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            单位构建
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #1b1f21; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 100%; justify-content: center; padding: 0.8px 12.8px; width: 120px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            星球战役
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #1b1f21; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 100%; justify-content: center; padding: 0.8px 12.8px; width: 120px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            科技研究
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #1b1f21ff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 100%; justify-content: center; padding: 0.8px 12.8px; width: 120px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            扩展脚本
+          </div>
+        </div>
+      </div>
+      <div
+        data-pencil-name="左边栏"
+        style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; gap: 10px; height: 64px; justify-content: flex-start; left: 0px; overflow: hidden; padding: 0px 5px; position: absolute; top: 168px; width: 1440px; z-index: 5"
+      >
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #161b1fff; border-radius: 20px; border: 2px solid #3d444d; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 40px; justify-content: center; padding: 0.8px 0px; width: 110px"
+        >
+          <div
+            style="box-sizing: border-box; color: #999999ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: center; width: 90px"
+          >
+            添加方块
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #161b1fff; border-radius: 20px; border: 2px solid #3d444d; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 40px; justify-content: flex-end; padding: 0.8px 0px; width: 230px"
+        >
+          <div
+            style="box-sizing: border-box; color: #999999ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 180px"
+          >
+            方块
+          </div>
+          <div
+            data-pencil-name="button"
+            style="align-items: center; background-color: #161b1fff; border-radius: 20px; border: 2px solid #3d444d; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 40px; justify-content: center; padding: 0.8px 12.8px; width: 40px"
+          >
+            <svg
+              viewBox="0 0 32 32"
+              preserveAspectRatio="xMidYMid meet"
+              data-icon-name="chevron-down"
+              data-icon-set="lucide"
+              xmlns="http://www.w3.org/2000/svg"
+              style="box-sizing: border-box; flex-shrink: 0; height: 32px; overflow: visible; width: 32px"
+            >
+              <path
+                d="M7.648 10.719q-.578 .195-.867 .703-.093 .195-.093 .578 0 .383 .109 .594 .117 .203 4.258 4.351 4.148 4.141 4.351 4.258 .211 .11 .594 .11 .383 0 .586-.11 .211-.117 4.352-4.258 4.148-4.148 4.257-4.351 .118-.211 .118-.594 0-.383-.094-.578-.227-.383-.641-.61-.133-.062-.226-.093-.094-.032-.352-.032-.258 0-.351 .032-.094 .031-.258 .093-.227 .133-3.805 3.719l-3.586 3.578-6.461-6.429q-.711-.672-.961-.868-.195-.125-.453-.125h-.062q-.321 0-.415 .032z"
+                fill="#ffffff"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        data-pencil-name="左边栏"
+        style="align-items: center; background-color: #0b0c0fff; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; height: 724px; justify-content: flex-start; left: 1440px; overflow: hidden; position: absolute; top: 296px; width: 480px; z-index: 6"
+      ></div>
+      <div
+        data-pencil-name="左边栏"
+        style="align-items: flex-start; background-color: #101417ff; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: 128px; justify-content: flex-start; left: 1440px; overflow: hidden; padding: 8px; position: absolute; top: 168px; width: 480px; z-index: 7"
+      >
+        <div
+          data-pencil-name="div"
+          style="align-items: center; background-color: #0d0d0d0f; border-radius: 8px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 8px; height: 56px; justify-content: flex-start; padding: 4px; width: 100%"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Roboto, system-ui, sans-serif; font-size: 36px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 36px; text-align: center; white-space: nowrap"
+          >
+            检查器:
+          </div>
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Roboto, system-ui, sans-serif; font-size: 36px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 36px; text-align: center; white-space: nowrap"
+          >
+            [ID]
+          </div>
+        </div>
+        <div
+          data-pencil-name="div"
+          style="align-items: center; background-color: #0d0d0d0f; border-radius: 8px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 8px; height: 56px; justify-content: flex-start; padding: 4px; width: 100%"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Roboto, system-ui, sans-serif; font-size: 32px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 32px; text-align: center; white-space: nowrap"
+          >
+            [名称]
+          </div>
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Roboto, system-ui, sans-serif; font-size: 32px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 32px; text-align: center; white-space: nowrap"
+          >
+            [中文名称]
+          </div>
+        </div>
+      </div>
+      <div
+        data-pencil-name="左边栏"
+        style="align-items: center; background-color: #1b1f21ff; box-sizing: border-box; display: flex; flex-direction: row; gap: 0px; height: 64px; justify-content: flex-start; left: 1440px; overflow: hidden; position: absolute; top: 104px; width: 480px; z-index: 8"
+      >
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #101417ff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 100%; justify-content: center; padding: 0.8px 12.8px; width: 120px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            属性
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 100%; justify-content: center; padding: 0.8px 12.8px; width: 120px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            预览
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 100%; justify-content: center; padding: 0.8px 12.8px; width: 120px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            校验
+          </div>
+        </div>
+        <div
+          data-pencil-name="button"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 100%; justify-content: center; padding: 0.8px 12.8px; width: 120px"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            文本
+          </div>
+        </div>
+      </div>
+      <div
+        data-pencil-name="左边栏"
+        style="align-items: center; background-color: #0b0c0fff; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; height: 788px; justify-content: flex-start; left: 0px; overflow: hidden; padding: 16px 8px; position: absolute; top: 232px; width: 320px; z-index: 9"
+      >
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 32px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            物品
+          </div>
+          <div
+            style="background-color: #CCCCCC; box-sizing: border-box; flex-shrink: 0; height: 4px; width: 240px"
+          ></div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 48px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="background-color: #ffa347; box-sizing: border-box; flex-shrink: 0; height: 48px; width: 24px"
+          ></div>
+          <div
+            data-pencil-name="左边栏"
+            style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 48px; justify-content: flex-start; overflow: hidden; width: 192px"
+          >
+            <div
+              style="box-sizing: border-box; color: #ffffff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 192px"
+            >
+              原版物品引用
+            </div>
+          </div>
+          <div
+            style="box-sizing: border-box; color: #666666ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 62px"
+          >
+            items
+          </div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 48px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="background-color: #ffa347; box-sizing: border-box; flex-shrink: 0; height: 48px; width: 24px"
+          ></div>
+          <div
+            data-pencil-name="左边栏"
+            style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 43px; justify-content: flex-start; overflow: hidden; width: 192px"
+          >
+            <div
+              style="box-sizing: border-box; color: #ffffff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 192px"
+            >
+              液体引用
+            </div>
+          </div>
+          <div
+            style="box-sizing: border-box; color: #666666ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 62px"
+          >
+            items
+          </div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 32px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            液体
+          </div>
+          <div
+            style="background-color: #CCCCCC; box-sizing: border-box; flex-shrink: 0; height: 4px; width: 240px"
+          ></div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 48px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="background-color: #40bfbf; box-sizing: border-box; flex-shrink: 0; height: 48px; width: 24px"
+          ></div>
+          <div
+            data-pencil-name="左边栏"
+            style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 43px; justify-content: flex-start; overflow: hidden; width: 192px"
+          >
+            <div
+              style="box-sizing: border-box; color: #ffffff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 192px"
+            >
+              原版液体引用
+            </div>
+          </div>
+          <div
+            style="box-sizing: border-box; color: #666666ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 62px"
+          >
+            items
+          </div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 48px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="background-color: #40bfbf; box-sizing: border-box; flex-shrink: 0; height: 48px; width: 24px"
+          ></div>
+          <div
+            data-pencil-name="左边栏"
+            style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 43px; justify-content: flex-start; overflow: hidden; width: 192px"
+          >
+            <div
+              style="box-sizing: border-box; color: #ffffff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 192px"
+            >
+              液体引用
+            </div>
+          </div>
+          <div
+            style="box-sizing: border-box; color: #666666ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 62px"
+          >
+            items
+          </div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 32px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            方块
+          </div>
+          <div
+            style="background-color: #CCCCCC; box-sizing: border-box; flex-shrink: 0; height: 4px; width: 240px"
+          ></div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 48px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="background-color: #5489f2; box-sizing: border-box; flex-shrink: 0; height: 48px; width: 24px"
+          ></div>
+          <div
+            data-pencil-name="左边栏"
+            style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 43px; justify-content: flex-start; overflow: hidden; width: 192px"
+          >
+            <div
+              style="box-sizing: border-box; color: #ffffff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 192px"
+            >
+              方块
+            </div>
+          </div>
+          <div
+            style="box-sizing: border-box; color: #666666ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 62px"
+          >
+            items
+          </div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 32px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            需求
+          </div>
+          <div
+            style="background-color: #CCCCCC; box-sizing: border-box; flex-shrink: 0; height: 4px; width: 240px"
+          ></div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 48px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="background-color: #77cf77; box-sizing: border-box; flex-shrink: 0; height: 48px; width: 24px"
+          ></div>
+          <div
+            data-pencil-name="左边栏"
+            style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 43px; justify-content: flex-start; overflow: hidden; width: 192px"
+          >
+            <div
+              style="box-sizing: border-box; color: #ffffff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 192px"
+            >
+              输入/输出
+            </div>
+          </div>
+          <div
+            style="box-sizing: border-box; color: #666666ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 62px"
+          >
+            items
+          </div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 48px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="background-color: #77cf77; box-sizing: border-box; flex-shrink: 0; height: 48px; width: 24px"
+          ></div>
+          <div
+            data-pencil-name="左边栏"
+            style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 43px; justify-content: flex-start; overflow: hidden; width: 192px"
+          >
+            <div
+              style="box-sizing: border-box; color: #ffffff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 192px"
+            >
+              建造所需
+            </div>
+          </div>
+          <div
+            style="box-sizing: border-box; color: #666666ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 62px"
+          >
+            items
+          </div>
+        </div>
+        <div
+          data-pencil-name="左边栏"
+          style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 48px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
+          <div
+            style="background-color: #77cf77; box-sizing: border-box; flex-shrink: 0; height: 48px; width: 24px"
+          ></div>
+          <div
+            data-pencil-name="左边栏"
+            style="align-items: center; background-color: #171a1cff; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: 43px; justify-content: flex-start; overflow: hidden; width: 192px"
+          >
+            <div
+              style="box-sizing: border-box; color: #ffffff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 192px"
+            >
+              消耗
+            </div>
+          </div>
+          <div
+            style="box-sizing: border-box; color: #666666ff; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 62px"
+          >
+            items
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
