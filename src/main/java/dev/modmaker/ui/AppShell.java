@@ -689,15 +689,26 @@ public final class AppShell extends BorderPane {
         javafx.scene.control.Tooltip.install(adaptive,
             new javafx.scene.control.Tooltip(Messages.t("toolbar.adaptive.tip")));
 
-        HBox bar = new HBox(8,
-            undoAction.button(), redoAction.button(), new Separator(Orientation.VERTICAL),
-            searchBox, new Separator(Orientation.VERTICAL),
-            validateAction.button(), buildAction.button(), openLogAction.button(),
-            launchAction.button(), stopAction.button(),
+        // Widths follow UI/资源管理-export.html: 50 for 撤销/重做/校验, 170 for the file actions,
+        // 110 for 停止游戏; min-width (not fixed width) keeps longer translations readable.
+        Label searchLabel = new Label(Messages.t("toolbar.search.label"));
+        searchLabel.getStyleClass().add("command-label");
+        HBox bar = new HBox(10,
+            commandButton(undoAction, 50), commandButton(redoAction, 50),
+            searchLabel, searchBox,
+            commandButton(validateAction, 50), commandButton(buildAction, 170),
+            commandButton(openLogAction, 170), commandButton(launchAction, 170),
+            commandButton(stopAction, 110),
             spacer(), adaptive);
         bar.setAlignment(Pos.CENTER_LEFT);
         bar.getStyleClass().add("command-bar");
         return bar;
+    }
+
+    private static Button commandButton(UiAction action, double minWidth) {
+        Button button = action.button();
+        button.setMinWidth(minWidth);
+        return button;
     }
 
     /** The canvas's own 48px row: the per-block link view switcher and the board selector. */

@@ -359,18 +359,46 @@
     -fx-min-height: 64;
     -fx-pref-height: 64;
     -fx-max-height: 64;
-    -fx-padding: 0 12 0 12;
+    -fx-padding: 0 5 0 5;
 }
 
 .command-bar .tool-button {
     -fx-background-color: #191B24;
-    -fx-background-radius: 4;
-    -fx-padding: 4 14 4 14;
-    -fx-text-fill: #CFD3D6;
+    -fx-background-radius: 20;
+    -fx-alignment: center;
+    -fx-padding: 0 12 0 12;
+    -fx-text-fill: #FFFFFF;
     -fx-font-size: 20px;
     -fx-min-height: 40;
     -fx-pref-height: 40;
     -fx-cursor: hand;
+}
+
+/* The export's "搜索:" chip: it sits on the bar itself, so it reads as plain text, not a button. */
+.command-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+    -fx-min-width: 50;
+}
+
+/* Search field: the export's 230x40 pill, 18px grey placeholder. */
+.command-bar .text-field {
+    -fx-background-color: #191B24;
+    -fx-background-radius: 20;
+    -fx-border-width: 0;
+    -fx-min-height: 40;
+    -fx-pref-height: 40;
+    -fx-max-height: 40;
+    -fx-font-size: 18px;
+    -fx-prompt-text-fill: #999999;
+}
+
+.command-bar .text-field:focused {
+    -fx-background-color: #191B24;
+    -fx-border-color: -mm-accent;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
 }
 
 .command-bar .tool-button:hover {
