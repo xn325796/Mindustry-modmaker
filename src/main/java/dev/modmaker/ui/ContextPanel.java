@@ -118,7 +118,8 @@ final class ContextPanel extends BorderPane {
             findings.setText("");
         }
         if (record == null || controller.project() == null) {
-            String none = Messages.t("inspector.title") + ": " + Messages.t("inspector.noSelection");
+            // Row 1 mirrors the design's "检查器: <id>" shape; row 2 carries the empty-state text.
+            String none = Messages.t("inspector.title") + ": —";
             for (Label id : headIds) {
                 id.setText(none);
             }

@@ -260,8 +260,8 @@
 }
 
 .rail-action {
-    -fx-font-size: 20px;
-    -fx-text-fill: -mm-text-2;
+    -fx-font-size: 24px;
+    -fx-text-fill: -mm-text-1;
 }
 
 .rail-action:hover {
@@ -434,6 +434,10 @@
     -fx-background-insets: 0;
     -fx-tab-min-height: 64;
     -fx-tab-max-height: 64;
+    /* TabPaneSkin centres the label inside TabPane.tabMinWidth; left at its default (0) the label
+       hugs the tab's left edge instead of matching the export's justify-content: center. */
+    -fx-tab-min-width: 120;
+    -fx-tab-max-width: 120;
 }
 
 .context-tabs > .tab-header-area,
@@ -466,6 +470,14 @@
     -fx-background-color: -mm-hover;
 }
 
+/* Four 120px tabs fill the 480px panel exactly, so TabPaneSkin thinks they overflow and reserves
+   room for its tabs-menu button, which clips the 文本 tab. The export has no overflow menu. */
+.context-tabs > .tab-header-area > .control-buttons-tab {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+}
+
 .context-tabs > .tab-header-area > .headers-region > .tab .tab-label {
     -fx-text-fill: -mm-text-1;
     -fx-font-size: 24px;
@@ -496,20 +508,21 @@
     -fx-min-height: 56;
     -fx-pref-height: 56;
     -fx-max-height: 56;
-    -fx-background-color: #0D0D0D;
+    /* UI/资源管理-export.html: rgba(13,13,13,0.06) over #101417, not a solid darker block. */
+    -fx-background-color: rgba(13, 13, 13, 0.06);
     -fx-background-radius: 8;
-    -fx-padding: 0 16 0 16;
-    -fx-spacing: 12;
+    -fx-padding: 0 4 0 4;
+    -fx-spacing: 8;
 }
 
 .context-head-id {
     -fx-text-fill: -mm-text-1;
-    -fx-font-size: 28px;
+    -fx-font-size: 36px;
 }
 
 .context-head-name {
     -fx-text-fill: -mm-text-1;
-    -fx-font-size: 28px;
+    -fx-font-size: 32px;
 }
 
 .context-head-findings {
@@ -1282,15 +1295,19 @@
  * forced the 96x48 cell onto them, which only looked harmless because .preview-tabs re-set the
  * colours and padding further down the sheet.
  */
+/* TabPaneSkin centres the label inside TabPane.tabMinWidth; without it the label is pinned to the
+   cell's left edge instead of the export's justify-content: center. */
+.center-tabs {
+    -fx-tab-min-width: 120;
+    -fx-tab-max-width: 120;
+}
+
 .center-tabs > .tab-header-area > .headers-region > .tab {
     -fx-background-color: -mm-panel-idle;
     -fx-background-radius: 0;
     -fx-border-color: transparent;
     -fx-border-width: 0;
-    /* The tab skin lays the label out at the padding's left edge, so the padding is how the label
-       is centred: at 24px a four-character name is about 96px, leaving 12px on each side of the
-       120px cell. */
-    -fx-padding: 0 12 0 12;
+    -fx-padding: 0;
     -fx-min-width: 120;
     -fx-pref-width: 120;
     -fx-max-width: 120;

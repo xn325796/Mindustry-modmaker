@@ -692,8 +692,8 @@ public final class AppShell extends BorderPane {
         HBox bar = new HBox(8,
             undoAction.button(), redoAction.button(), new Separator(Orientation.VERTICAL),
             searchBox, new Separator(Orientation.VERTICAL),
-            validateAction.button(), buildAction.button(), launchAction.button(),
-            stopAction.button(), openLogAction.button(),
+            validateAction.button(), buildAction.button(), openLogAction.button(),
+            launchAction.button(), stopAction.button(),
             spacer(), adaptive);
         bar.setAlignment(Pos.CENTER_LEFT);
         bar.getStyleClass().add("command-bar");
